@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="group_discord_manager_user" model="res.groups">
+            <field name="name">Discord Manager User</field>
+            <field name="category_id" ref="base.module_category_tools"/>
+        </record>
+
+        <record id="group_discord_manager_manager" model="res.groups">
+            <field name="name">Discord Manager Manager</field>
+            <field name="category_id" ref="base.module_category_tools"/>
+            <field name="implied_ids" eval="[(4, ref('group_discord_manager_user'))]"/>
+        </record>
+    </data>
+</odoo>

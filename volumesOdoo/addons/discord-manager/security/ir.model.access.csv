@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_discord_manager_server,discord.manager.server,model_discord_manager_server,,1,1,1,1
+access_discord_manager_channel,discord.manager.channel,model_discord_manager_channel,,1,1,1,1
+access_discord_manager_webhook,discord.manager.webhook,model_discord_manager_webhook,,1,1,1,1
+access_discord_manager_message,discord.manager.message,model_discord_manager_message,,1,1,1,1

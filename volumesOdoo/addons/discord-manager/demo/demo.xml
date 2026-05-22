@@ -1,0 +1,33 @@
+<odoo>
+    <data noupdate="1">
+        <record id="demo_discord_server_1" model="discord.manager.server">
+            <field name="name">Gimnasio Oficial</field>
+            <field name="guild_id">123456789012345678</field>
+            <field name="description">Servidor de Discord para comunicación interna.</field>
+        </record>
+
+        <record id="demo_discord_channel_1" model="discord.manager.channel">
+            <field name="name">general</field>
+            <field name="channel_id">987654321098765432</field>
+            <field name="channel_type">text</field>
+            <field name="server_id" ref="demo_discord_server_1"/>
+        </record>
+
+        <record id="demo_discord_webhook_1" model="discord.manager.webhook">
+            <field name="name">Webhook General</field>
+            <field name="webhook_url">https://discord.com/api/webhooks/EXAMPLE/WEBHOOK</field>
+            <field name="server_id" ref="demo_discord_server_1"/>
+            <field name="channel_id" ref="demo_discord_channel_1"/>
+            <field name="active">True</field>
+        </record>
+
+        <record id="demo_discord_message_1" model="discord.manager.message">
+            <field name="name">Mensaje de bienvenida</field>
+            <field name="author">Sistema</field>
+            <field name="content">Bienvenido al servidor de Discord del gimnasio.</field>
+            <field name="channel_id" ref="demo_discord_channel_1"/>
+            <field name="webhook_id" ref="demo_discord_webhook_1"/>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,228 @@
+<odoo>
+    <data>
+        <record id="view_discord_server_tree" model="ir.ui.view">
+            <field name="name">discord.manager.server.tree</field>
+            <field name="model">discord.manager.server</field>
+            <field name="arch" type="xml">
+                <tree string="Servidores Discord">
+                    <field name="name"/>
+                    <field name="guild_id"/>
+                    <field name="message_count"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_discord_server_form" model="ir.ui.view">
+            <field name="name">discord.manager.server.form</field>
+            <field name="model">discord.manager.server</field>
+            <field name="arch" type="xml">
+                <form string="Servidor Discord">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="guild_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <notebook>
+                            <page string="Canales">
+                                <field name="channel_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="channel_id"/>
+                                        <field name="channel_type"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Webhooks">
+                                <field name="webhook_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="webhook_url"/>
+                                        <field name="active"/>
+                                        <field name="last_sent"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_discord_channel_kanban" model="ir.ui.view">
+            <field name="name">discord.manager.channel.kanban</field>
+            <field name="model">discord.manager.channel</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_small_column">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record">
+                                <div class="o_kanban_primary_bottom">
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                <div class="o_kanban_secondary_bottom">
+                                    <div><field name="server_id"/></div>
+                                    <div><field name="channel_type"/></div>
+                                </div>
+                                <div class="o_kanban_tags">
+                                    <field name="active" widget="boolean_toggle"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_discord_channel_tree" model="ir.ui.view">
+            <field name="name">discord.manager.channel.tree</field>
+            <field name="model">discord.manager.channel</field>
+            <field name="arch" type="xml">
+                <tree string="Canales Discord">
+                    <field name="name"/>
+                    <field name="server_id"/>
+                    <field name="channel_id"/>
+                    <field name="channel_type"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_discord_channel_form" model="ir.ui.view">
+            <field name="name">discord.manager.channel.form</field>
+            <field name="model">discord.manager.channel</field>
+            <field name="arch" type="xml">
+                <form string="Canal Discord">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="channel_id"/>
+                            <field name="channel_type"/>
+                            <field name="server_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="message_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                    <field name="posted_on"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_discord_webhook_tree" model="ir.ui.view">
+            <field name="name">discord.manager.webhook.tree</field>
+            <field name="model">discord.manager.webhook</field>
+            <field name="arch" type="xml">
+                <tree string="Webhooks Discord">
+                    <field name="name"/>
+                    <field name="server_id"/>
+                    <field name="channel_id"/>
+                    <field name="active"/>
+                    <field name="last_sent"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_discord_webhook_form" model="ir.ui.view">
+            <field name="name">discord.manager.webhook.form</field>
+            <field name="model">discord.manager.webhook</field>
+            <field name="arch" type="xml">
+                <form string="Webhook Discord">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="webhook_url"/>
+                            <field name="server_id"/>
+                            <field name="channel_id"/>
+                            <field name="active"/>
+                            <field name="last_sent" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_discord_message_tree" model="ir.ui.view">
+            <field name="name">discord.manager.message.tree</field>
+            <field name="model">discord.manager.message</field>
+            <field name="arch" type="xml">
+                <tree string="Mensajes Discord">
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="channel_id"/>
+                    <field name="state"/>
+                    <field name="posted_on"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_discord_message_form" model="ir.ui.view">
+            <field name="name">discord.manager.message.form</field>
+            <field name="model">discord.manager.message</field>
+            <field name="arch" type="xml">
+                <form string="Mensaje Discord">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="author"/>
+                            <field name="channel_id"/>
+                            <field name="webhook_id"/>
+                            <field name="state"/>
+                            <field name="posted_on" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="content"/>
+                            <field name="error_message" readonly="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_send" type="object" string="Enviar" class="btn-primary"/>
+                        <button string="Guardar" class="btn-secondary" type="object" name="write"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_discord_server_tree" model="ir.actions.act_window">
+            <field name="name">Servidores Discord</field>
+            <field name="res_model">discord.manager.server</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <record id="action_discord_channel_tree" model="ir.actions.act_window">
+            <field name="name">Canales Discord</field>
+            <field name="res_model">discord.manager.channel</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_discord_channel_kanban"/>
+        </record>
+
+        <record id="action_discord_webhook_tree" model="ir.actions.act_window">
+            <field name="name">Webhooks Discord</field>
+            <field name="res_model">discord.manager.webhook</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_discord_message_tree" model="ir.actions.act_window">
+            <field name="name">Mensajes Discord</field>
+            <field name="res_model">discord.manager.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_discord_manager_root" name="Discord Manager"/>
+        <menuitem id="menu_discord_servers" name="Servidores" parent="menu_discord_manager_root" action="action_discord_server_tree"/>
+        <menuitem id="menu_discord_channels" name="Canales" parent="menu_discord_manager_root" action="action_discord_channel_tree"/>
+        <menuitem id="menu_discord_webhooks" name="Webhooks" parent="menu_discord_manager_root" action="action_discord_webhook_tree"/>
+        <menuitem id="menu_discord_messages" name="Mensajes" parent="menu_discord_manager_root" action="action_discord_message_tree"/>
+    </data>
+</odoo>
